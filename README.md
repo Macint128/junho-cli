@@ -1,168 +1,77 @@
-# Junho CLI 🍹🍰🧢
+# 🍜 Junho CLI 식당 v17.0
 
-**Junho CLI 식당 v17.0** – 터미널 메뉴판 & 메뉴 관리 CLI 🎉  
-
-프로그래머 감성 가득한 메뉴판과 굿즈, 계절 한정 메뉴까지 모두 포함!  
-터미널에서 메뉴를 확인하고, 메뉴 추가/삭제가 가능하며 안전하게 글로벌 CLI처럼 사용할 수 있습니다 😎
+> 개발자들을 위한, 맛있는 코드 메뉴판!  
+> 직접 CLI에서 메뉴를 보고, 추가하고, 지우고, 업데이트할 수 있습니다.
 
 ---
 
-## 📦 주요 기능
-
-- 컬러풀한 메뉴판 출력 (`junho -menu`)
-- 메뉴 추가 (`junho -add`)
-- 메뉴 삭제 (`junho -delete`)
-- 메뉴판 구분: 메인, 음료, 디저트, 굿즈, 계절 한정 메뉴
-- 메뉴 정보는 `menu.json`에 자동 저장
-- macOS / Linux 환경에서 안전하게 글로벌 CLI처럼 사용 가능
-
----
-
-## ⚙ 설치 방법
-
-### 1️⃣ 리포 클론
+## ⚙️ 설치
 
 ```bash
-git clone https://github.com/<username>/junho-cli.git
+git clone https://github.com/imjunho/junho-cli.git
 cd junho-cli
-2️⃣ 의존성 설치
-bash
-코드 복사
-npm install
-주의: chalk 모듈을 사용하므로 반드시 설치 필요
+chmod +x junho.js
+npm install chalk
+ln -sf ~/junho-cli/junho.js /usr/local/bin/junho
+이제 전역에서 아래 명령어로 실행할 수 있습니다:
 
-3️⃣ 글로벌 CLI로 사용 (권장)
-macOS 권한 문제 예방을 위해 홈 디렉토리 글로벌 경로 사용
-
-bash
-코드 복사
-mkdir -p ~/.npm-global
-npm config set prefix ~/.npm-global
-echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.zshrc
-source ~/.zshrc
-npm link
-이제 어디서든 CLI 명령어 사용 가능
-
-bash
-코드 복사
 junho -menu
-⚠ sudo 없이 안전하게 CLI 실행 가능
-/usr/local/lib 경로를 건드리지 않음
+🍱 주요 명령어
+명령어	설명
+junho -menu	전체 메뉴를 보기
+junho -add	새로운 메뉴 추가
+junho -delete	메뉴 삭제
+junho -update	CLI 최신 버전으로 업데이트
+junho -help	도움말 보기
 
-🧾 사용법
-1️⃣ 메뉴판 출력
-bash
-코드 복사
-junho -menu
-전체 메뉴판 출력 (메인, 음료, 디저트, 굿즈, 계절 한정 메뉴)
+📋 메뉴 구조 (menu.json)
+menu.json 파일은 다음과 같은 구조로 되어 있습니다:
 
-컬러와 이모지 포함
-
-2️⃣ 메뉴 추가
-bash
-코드 복사
-junho -add [섹션] [이름] [가격] [설명]
-[섹션]: main, drinks, dessert, goods, seasonal
-
-[이름]: 메뉴 이름
-
-[가격]: 가격 (숫자)
-
-[설명]: 메뉴 설명 (선택)
-
-예시:
-
-bash
-코드 복사
-junho -add dessert "Lua 블루베리 머핀" 5900 "오타 감성 듬뿍"
-junho -add drinks "JavaScript 네모네모 레모네이드" 6900
-추가 후 menu.json에 자동 반영
-
-3️⃣ 메뉴 삭제
-bash
-코드 복사
-junho -delete [섹션] [이름]
-[섹션]과 [이름]을 정확히 입력
-
-예시:
-
-bash
-코드 복사
-junho -delete dessert "Lua 블루베리 쿠쿸키"
-삭제 후 -menu로 확인 가능
-
-📁 menu.json 구조
-json
-코드 복사
 {
-  "main": [],
+  "main": [ { "name": "메뉴명", "price": 10000, "desc": "설명" } ],
   "drinks": [],
   "dessert": [],
   "goods": [],
   "seasonal": []
 }
-메뉴 추가/삭제 시 자동 갱신
+🧁 메뉴 추가 방법
+새로운 메뉴를 추가하려면 아래 명령을 실행하세요:
 
-안전하게 JSON 읽기 처리됨, 비어 있어도 오류 없음
+junho -add
+CLI가 안내하는 대로 카테고리, 메뉴 이름, 가격, 설명을 입력하면 자동으로 menu.json에 반영됩니다.
 
-🛠 권한 문제 해결 (macOS)
-EACCES 또는 EPERM 오류 발생 시:
+🧹 메뉴 삭제 방법
+junho -delete
+삭제하고 싶은 메뉴 이름을 입력하면 자동으로 찾아서 제거됩니다.
 
-터미널에 전체 디스크 접근 허용
+🔄 CLI 업데이트 (junho -update)
+junho-cli를 최신 버전으로 갱신하려면 아래 명령어를 입력하세요:
 
-홈 디렉토리 글로벌 경로 사용 (권장)
+junho -update
+이 명령은 내부적으로 다음 명령을 실행합니다:
 
-bash
-코드 복사
-mkdir -p ~/.npm-global
-npm config set prefix ~/.npm-global
-echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.zshrc
-source ~/.zshrc
-npm link
-sudo는 최후의 수단
+git pull origin main
+⚠️ 주의:
 
-bash
-코드 복사
-sudo npm link
-sudo 사용 시 나중에 권한 문제 주의
+junho-cli 폴더가 Git 리포지토리여야 합니다.
 
-💡 팁
-디렉토리 삭제:
+로컬 변경사항이 있으면 커밋하거나 스태시 후 실행하세요.
 
-bash
-코드 복사
-rm -r ~/junho-cli
-폴더 안 내용만 삭제:
+🛠️ 권한 문제 해결
+만약 다음과 같은 에러가 발생한다면:
 
-bash
-코드 복사
-rm -r ~/junho-cli/*
-실행 권한 문제 시:
+zsh: permission denied: junho
+해결 방법:
 
-bash
-코드 복사
-chmod +x ~/junho-cli/junho.js
-🎨 메뉴판 구성
-🥘 시그니처 메인 메뉴
+chmod +x junho.js
+sudo ln -sf ~/junho-cli/junho.js /usr/local/bin/junho
+🍰 Jeckell 메뉴
+신규 디저트 “Jeckell 다크초코 푸딩”이 추가되었습니다!
+정적 사이트처럼 묵직하고 진한 맛을 느껴보세요 🍫
 
-🍹 음료
+🧠 개발자 메모
+menu.json을 수동으로 수정할 수 있습니다.
 
-🍰 디저트
+JSON 포맷이 깨지지 않도록 콤마(,) 위치에 유의하세요.
 
-🎁 굿즈
-
-🍂 계절 한정 메뉴
-
-💡 세트 추천: IDE 콤보 (라떼쉐이크 + 제비치킨 반마리) ₩15,500
-
-📝 기여 방법
-리포 클론
-
-Node.js 설치
-
-npm install로 의존성 설치
-
-글로벌 링크 (npm link)
-
-메뉴판 수정/추가/삭제 후 PR 가능
-
+CLI는 Node.js 18 이상에서 작동합니다.
