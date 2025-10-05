@@ -23,7 +23,7 @@ GitHub 리포를 클론 후 글로벌 CLI처럼 사용:
 
 ```bash
 # 리포 클론
-git clone https://github.com/<username>/junho-cli.git
+git clone https://github.com/Macint128/junho-cli.git
 cd junho-cli
 
 # 의존성 설치
