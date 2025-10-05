@@ -8,7 +8,7 @@
 ## ⚙️ 설치
 
 ```bash
-git clone https://github.com/imjunho/junho-cli.git
+git clone https://github.com/Macint128/junho-cli.git
 cd junho-cli
 chmod +x junho.js
 npm install chalk
