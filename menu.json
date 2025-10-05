@@ -1,6 +1,5 @@
 {
   "main": [
-    { "name": "Java 라떼쉐이크", "price": 7900, "desc": "컴파일된 향긋한 원두 위에 예외 한 스푼 첨가" },
     { "name": "Swift 제비 치킨", "price": 8900, "desc": "반마리 기준, 한 입 먹으면 빨라지는 반응속도" },
     { "name": "HTML 라구파스타", "price": 11500, "desc": "마크업된 토마토 소스, DOM 치즈 토핑" },
     { "name": "C++ 블루치즈 킬바사", "price": 13200, "desc": "포인터 향 가득, 스택/힙 사이 절묘한 풍미" },
@@ -9,13 +8,16 @@
     { "name": "만약C였더라면", "price": 9500, "desc": "매운맛/순한맛/마라맛/짜장맛 선택 가능" }
   ],
   "drinks": [
+    { "name": "Java 라떼쉐이크", "price": 7900, "desc": "컴파일된 향긋한 원두 위에 예외 한 스푼 첨가" },
     { "name": "JavaScript 네모네모 레모네이드", "price": 6900 },
     { "name": "TypeScript 네모네모 블루레모네이드", "price": 7200 }
+    
   ],
   "dessert": [
     { "name": "Lua 블루베리 쿠쿸키", "price": 5900 },
     { "name": "진격의 Ruby 딸기 생일케이크", "price": 16500 },
     { "name": "빠방 C#크로플!", "price": 7700 }
+    { "name": "Jeckell 다크초코 푸딩", "price": 8800, "desc": "블로그 빌드보다 진한 다크초코의 정적사이트 감성" }
   ],
   "goods": [
     { "name": "으엄ㅁ…… 모자 (.umm)", "price": 25000 },
