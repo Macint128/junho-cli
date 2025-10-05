@@ -1,199 +1,127 @@
-# Junho CLI 🍹🍰🧢
+# 🍽️ Junho CLI Restaurant
 
-**Junho CLI 식당 v17.0** – 터미널 메뉴판 & 메뉴 관리 CLI 🎉  
-
-프로그래머 감성 가득한 메뉴판과 굿즈, 계절 한정 메뉴까지 모두 포함!  
-터미널에서 메뉴를 확인하고, 메뉴 추가/삭제가 가능하며 안전하게 글로벌 CLI처럼 사용할 수 있습니다 😎
+> "코드와 맛이 공존하는 그곳, Junho CLI 식당에 오신 걸 환영합니다."
 
 ---
 
-## 📦 주요 기능
-
-- 컬러풀한 메뉴판 출력 (`junho -menu`)
-- 메뉴 추가 (`junho -add`)
-- 메뉴 삭제 (`junho -delete`)
-- 메뉴판 구분: 메인, 음료, 디저트, 굿즈, 계절 한정 메뉴
-- 메뉴 정보는 `menu.json`에 자동 저장
-- macOS / Linux 환경에서 안전하게 글로벌 CLI처럼 사용 가능
-
----
-
-## ⚙ 설치 방법
+## 🚀 설치 방법
 
 ### 1️⃣ 리포 클론
-
 ```bash
-git clone https://github.com/Macint128/junho-cli.git
+git clone https://github.com/yourname/junho-cli.git
 cd junho-cli
-````
-
-### 2️⃣ 의존성 설치
-
-```bash
+2️⃣ 의존성 설치
+bash
+코드 복사
 npm install
-```
-
-> 주의: `chalk` 모듈을 사용하므로 반드시 설치 필요
-
----
-
-### 3️⃣ 글로벌 CLI로 사용 (권장)
-
-**macOS 권한 문제 예방을 위해 홈 디렉토리 글로벌 경로 사용**
-
-```bash
-mkdir -p ~/.npm-global
-npm config set prefix ~/.npm-global
-echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.zshrc
-source ~/.zshrc
+3️⃣ 실행 권한 부여
+bash
+코드 복사
+chmod +x junho.js
+4️⃣ CLI 링크 연결
+bash
+코드 복사
 npm link
-```
+👉 이후엔 전역 어디서든
 
-* 이제 어디서든 CLI 명령어 사용 가능
-
-```bash
+bash
+코드 복사
 junho -menu
-```
+로 메뉴판 확인 가능!
 
-> ⚠ sudo 없이 안전하게 CLI 실행 가능
-> `/usr/local/lib` 경로를 건드리지 않음
-
----
-
-## 🧾 사용법
-
-### 1️⃣ 메뉴판 출력
-
-```bash
+🍔 메뉴판 보기
+bash
+코드 복사
 junho -menu
-```
+현재 등록된 모든 메뉴를 카테고리별로 출력합니다.
+카테고리는 main, dessert, drink, goods, season 이 있습니다.
 
-* 전체 메뉴판 출력 (메인, 음료, 디저트, 굿즈, 계절 한정 메뉴)
-* 컬러와 이모지 포함
-
----
-
-### 2️⃣ 메뉴 추가
-
-```bash
-junho -add [섹션] [이름] [가격] [설명]
-```
-
-* `[섹션]`: main, drinks, dessert, goods, seasonal
-* `[이름]`: 메뉴 이름
-* `[가격]`: 가격 (숫자)
-* `[설명]`: 메뉴 설명 (선택)
-
+🧁 메뉴 추가
+bash
+코드 복사
+junho -add <카테고리> "<이름>" <가격> "<설명>"
 예시:
 
-```bash
-junho -add dessert "Lua 블루베리 머핀" 5900 "오타 감성 듬뿍"
-junho -add drinks "JavaScript 네모네모 레모네이드" 6900
-```
+bash
+코드 복사
+junho -add dessert "Rosetta 변환 파이" 6900 "이 파이를 먹으면 모든 언어가 통한다!"
+❌ 메뉴 삭제
+bash
+코드 복사
+junho -delete "<이름>"
+예시:
 
-> 추가 후 `menu.json`에 자동 반영
+bash
+코드 복사
+junho -delete "Java 라떼쉐이크"
+♻️ 메뉴 업데이트
+bash
+코드 복사
+junho -update
+최신 메뉴판(JSON 버전)을 자동으로 불러옵니다.
+깃허브의 menu.json 최신판이 로컬로 반영됩니다.
 
----
+🧰 권한 문제 해결
+macOS에서 npm link나 permission denied가 뜨면 아래를 실행하세요:
 
-### 3️⃣ 메뉴 삭제
-
-```bash
-junho -delete [섹션] [이름]
-```
-
-* `[섹션]`과 `[이름]`을 정확히 입력
-* 예시:
-
-```bash
-junho -delete dessert "Lua 블루베리 쿠쿸키"
-```
-
-* 삭제 후 `-menu`로 확인 가능
-
----
-
-## 📁 menu.json 구조
-
-```json
-{
-  "main": [],
-  "drinks": [],
-  "dessert": [],
-  "goods": [],
-  "seasonal": []
-}
-```
-
-* 메뉴 추가/삭제 시 자동 갱신
-* 안전하게 JSON 읽기 처리됨, 비어 있어도 오류 없음
-
----
-
-## 🛠 권한 문제 해결 (macOS)
-
-* `EACCES` 또는 `EPERM` 오류 발생 시:
-
-1. 터미널에 전체 디스크 접근 허용
-2. 홈 디렉토리 글로벌 경로 사용 (권장)
-
-```bash
+bash
+코드 복사
 mkdir -p ~/.npm-global
 npm config set prefix ~/.npm-global
 echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 npm link
-```
+이제 sudo 없이도 CLI를 전역 명령처럼 실행할 수 있습니다 🙌
 
-3. sudo는 최후의 수단
+🎉 현재 메뉴 (v18.0 기준)
+🍛 Main
+Java 라떼쉐이크 — 7900₩ ☕
 
-```bash
-sudo npm link
-```
+Swift 제비 치킨 (반/1/2마리) — 8900₩부터 🍗
 
-> sudo 사용 시 나중에 권한 문제 주의
+C++ 블루치즈 킬바사 — 9500₩ 🌭
 
----
+JSON 옐로우 집게발 구이 — 9900₩ 🦀
 
-## 💡 팁
+“만약C였더라면”(매운맛/순한맛/마라/짜장) — 8700₩ 🍜
 
-* 디렉토리 삭제:
+Kotlin 삼각 치즈 버거 — 9400₩ 🍔
 
-```bash
-rm -r ~/junho-cli
-```
+🍰 Dessert
+Lua 블루베리 쿠쿸키 — 5900₩ 🍪
 
-* 폴더 안 내용만 삭제:
+Ruby 딸기 생일케이크 — 8700₩ 🎂
 
-```bash
-rm -r ~/junho-cli/*
-```
+C# 크로플 — 6500₩ 💥
 
-* 실행 권한 문제 시:
+Jekyll 잭키 타르트 — 6200₩ 🧁
 
-```bash
-chmod +x ~/junho-cli/junho.js
-```
+Rosetta 변환 파이 — 6900₩ 🌍
 
----
+🍹 Drink
+JavaScript 네모네모 레모네이드 — 5300₩ 🍋
 
-## 🎨 메뉴판 구성
+TypeScript 네모네모 블루레모네이드 — 5500₩ 💙
 
-* 🥘 **시그니처 메인 메뉴**
-* 🍹 **음료**
-* 🍰 **디저트**
-* 🎁 **굿즈**
-* 🍂 **계절 한정 메뉴**
+🛍️ Goods
+“으엄ㅁ...... 모자” — 11900₩ (.umm 한정 굿즈 🧢)
 
-💡 *세트 추천: IDE 콤보 (라떼쉐이크 + 제비치킨 반마리) ₩15,500*
+brainfuck’s hello pencil — 3200₩ ✏️
 
----
+🌸 Season Limited
+봄: Firebase 마라탕 — 9800₩ 🌶️
 
-## 📝 기여 방법
+여름: GitHub 문어숙회 — 12500₩ 🐙
 
-1. 리포 클론
-2. Node.js 설치
-3. `npm install`로 의존성 설치
-4. 글로벌 링크 (`npm link`)
-5. 메뉴판 수정/추가/삭제 후 PR 가능
-
----
+💾 파일 구조
+bash
+코드 복사
+junho-cli/
+│
+├── junho.js        # 메인 실행 파일
+├── menu.json       # 메뉴 데이터 저장소
+├── package.json    # NPM 설정
+└── README.md       # 문서 (이 파일)
+💡 제작자 노트
+“이 프로젝트는 배고픈 개발자의 정신적 허기를 달래기 위해 만들어졌습니다.”
+— Junho CLI Founder 🍴
