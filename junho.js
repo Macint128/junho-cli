@@ -46,7 +46,7 @@ const args = process.argv.slice(2);
 
 // 메뉴 출력 함수
 function printMenu() {
-  console.log(chalk.bgBlue.white.bold(" 준호의 파이참치 식당 v17.0 "));
+  console.log(chalk.bgBlue.white.bold(" Junho CLI 식당 v17.0 "));
   console.log(chalk.green("─────────────────────────────"));
 
   const printSection = (title, items) => {
