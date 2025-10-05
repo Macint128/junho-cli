@@ -12,12 +12,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const menuPath = path.join(__dirname, "menu.json");
 
-// 콘솔 입력 세팅
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
 // 메뉴 로드
 function loadMenu() {
   const data = fs.readFileSync(menuPath, "utf-8");
@@ -32,7 +26,7 @@ function saveMenu(menu) {
 // 메뉴 출력
 function printMenu() {
   const menu = loadMenu();
-  console.log(chalk.bgBlue.white.bold("\n🍜 Junho CLI 식당 v17.0 🍜\n"));
+  console.log(chalk.bgBlue.white.bold("\n🍜 Junho CLI 식당 v17.1 🍜\n"));
 
   for (const [category, items] of Object.entries(menu)) {
     console.log(chalk.yellow.bold(`\n📂 ${category.toUpperCase()}`));
@@ -49,6 +43,10 @@ function printMenu() {
 // 메뉴 추가
 function addMenu() {
   const menu = loadMenu();
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
 
   rl.question("추가할 카테고리 (main, drinks, dessert, goods, seasonal): ", (category) => {
     if (!menu[category]) {
@@ -77,6 +75,10 @@ function addMenu() {
 // 메뉴 삭제
 function deleteMenu() {
   const menu = loadMenu();
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
 
   rl.question("삭제할 메뉴 이름: ", (name) => {
     let found = false;
@@ -127,6 +129,7 @@ const command = process.argv[2];
 switch (command) {
   case "-menu":
     printMenu();
+    process.exit(0); // 메뉴 출력 후 바로 종료
     break;
   case "-add":
     addMenu();
