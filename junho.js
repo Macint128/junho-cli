@@ -90,3 +90,15 @@ if(args[0] === '-menu') {
   console.log("  junho -delete [섹션] [이름]");
   console.log("섹션: main, drinks, dessert, goods, seasonal");
 }
+// update 기능 추가
+import { execSync } from "child_process";
+
+if (command === "-update") {
+  console.log(chalk.blueBright("🌀 최신 버전으로 업데이트 중입니다..."));
+  try {
+    execSync("git pull origin main", { stdio: "inherit" });
+    console.log(chalk.greenBright("✅ 업데이트 완료! 최신 메뉴를 불러왔습니다."));
+  } catch (error) {
+    console.error(chalk.red("❌ 업데이트 실패! Git 리포지토리 상태를 확인하세요."));
+  }
+}
