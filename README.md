@@ -23,7 +23,7 @@
 ### 1️⃣ 리포 클론
 
 ```bash
-git clone https://github.com/<username>/junho-cli.git
+git clone https://github.com/Macint128/junho-cli.git
 cd junho-cli
 ````
 
